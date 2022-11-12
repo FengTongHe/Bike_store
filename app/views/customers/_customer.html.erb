@@ -19,4 +19,14 @@
     <%= customer.notes %>
   </p>
 
+  <p>
+    <div class="card-image">
+      <% if customer.image.present? %>
+        <figure class="image">
+          <%= image_tag customer.image %>
+        </figure>
+      <%end%>
+    </div>
+  </p>
+
 </div>
