@@ -15,18 +15,17 @@
   </p>
 
   <p>
-    <strong>Cost:</strong>
-    <%= product.cost %>
-  </p>
-
-  <p>
     <strong>Price:</strong>
     <%= product.price %>
   </p>
 
   <p>
-    <strong>Comment:</strong>
-    <%= product.comment %>
+    <div class="card-image">
+      <% if product.image.present? %>
+        <figure class="image">
+          <%= image_tag product.image %>
+        </figure>
+      <%end%>
+    </div>
   </p>
-
 </div>
