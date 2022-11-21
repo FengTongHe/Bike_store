@@ -4,7 +4,17 @@ ActiveAdmin.register Product do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :manufacture, :style, :cost, :price, :comment
+  permit_params :name, :manufacture, :style, :cost, :price, :comment, :image
+
+  form do |f|
+    f.semantic_errors
+    f.inputs
+    f.inputs do
+      f.input :image, as:   :file,
+                      hint: f.object.image.present? ? image_tag(f.object.image, size: "300x300") : "No image"
+    end
+    f.actions
+  end
   #
   # or
   #
