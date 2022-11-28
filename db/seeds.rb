@@ -31,6 +31,7 @@ bikes.each do |b|
     name:        b["model"],
     manufacture: b["brand"],
     style:       b["style"],
+    cost:        b["cost"],
     price:       b["price"]
   )
   # download_image = URI.open(b["img-src"])
