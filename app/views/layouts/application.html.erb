@@ -16,7 +16,7 @@
       <nav class="navbar has-shadow is-white">
         <div class="navbar-brand">
           <a class="navbar-item">
-            <%= image_tag("logos/logo.png", style: 'max-height: 200px')%>
+            <%= image_tag("logos/logo.png", style: 'max-height: 180px')%>
           </a>
           <a class="navbar-burger" id="burger">
             <span></span>
@@ -24,10 +24,30 @@
             <span></span>
           </a>
         </div>
-        <div class="navbar-menu" id="nav-links">
+        <div class="navbar-menu is-size-5 is-align-items-self-end" id="nav-links">
           <div class="navbar-end">
             <%= link_to "Home", products_path, class: "navbar-item" %>
-            <span  class="navbar-item">Categories</span >
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Categories
+              </a>
+
+              <div class="navbar-dropdown">
+
+                <a class="navbar-item">
+                  Hard tail
+                </a>
+                <a class="navbar-item">
+                  Full suspension
+                </a>
+                <a class="navbar-item">
+                  Gravel
+                </a>
+                <a class="navbar-item">
+                  Performance
+                </a>
+              </div>
+            </div>
             <%= link_to "About", about_page_index_path, class: "navbar-item" %>
           </div>
         </div>
