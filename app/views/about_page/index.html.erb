@@ -1,10 +1,30 @@
-<h1><%= @about.Title %></h1>
-<p>
-    <%= @about.Content %>
-</p>
-
-<div>
-    <p>Contact us</p>
-    <p>Email: <%= @contact.email %></p>
-    <p>Phone: <%= @contact.phone %></p>
-</div>
+<section class="section">
+    <div class="container">
+        <div class="tile is-ancestor">
+        <div class="tile is-vertical is-8">
+            <div class="tile">
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-primary">
+                <p class="title"><%= @about.Title %>.</p>
+                </article>
+                <article class="tile is-child notification is-warning">
+                <p class="subtitle"><%= @about.Content %></p>
+                </article>
+            </div>
+            </div>
+        </div>
+        <div class="tile is-parent">
+            <article class="tile is-child notification is-success">
+            <div class="content">
+                <p class="title">Contact us</p>
+                <p class="subtitle">Email: <%= @contact.email %></p>
+                <p class="subtitle">Phone: <%= @contact.phone %></p>
+                <div class="content">
+                <!-- Content -->
+                </div>
+            </div>
+            </article>
+        </div>
+        </div>
+    </div>
+</section>

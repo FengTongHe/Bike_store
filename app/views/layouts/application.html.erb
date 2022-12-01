@@ -26,7 +26,14 @@
         </div>
         <div class="navbar-menu is-size-5 is-align-items-self-end" id="nav-links">
           <div class="navbar-end">
+
+            <%= form_tag(products_path, method: :get, class: "navbar-item") do %>
+              <%= text_field_tag(:search, params[:search]) %>
+              <%= submit_tag ("Search") %>
+            <% end %>
+
             <%= link_to "Home", products_path, class: "navbar-item" %>
+
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
                 Categories
@@ -34,18 +41,10 @@
 
               <div class="navbar-dropdown">
 
-                <a class="navbar-item">
-                  Hard tail
-                </a>
-                <a class="navbar-item">
-                  Full suspension
-                </a>
-                <a class="navbar-item">
-                  Gravel
-                </a>
-                <a class="navbar-item">
-                  Performance
-                </a>
+                <%= link_to "Hard Tail", "http://localhost:3000/products?search=23&commit=Search", class: "navbar-item" %>
+                <%= link_to "Full Suspension", "http://localhost:3000/products?search=24&commit=Search", class: "navbar-item" %>
+                <%= link_to "Gravel", "http://localhost:3000/products?search=26&commit=Search", class: "navbar-item" %>
+                <%= link_to "Performance", "http://localhost:3000/products?search=25&commit=Search", class: "navbar-item" %>
               </div>
             </div>
             <%= link_to "About", about_page_index_path, class: "navbar-item" %>

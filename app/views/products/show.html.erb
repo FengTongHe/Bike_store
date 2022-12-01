@@ -1,10 +1,39 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @product %>
+  <section class="section">
+    <div class="container">
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical is-8">
+          <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child notification is-primary">
+                <p class="title"><%= @product.name %></p>
+                <p class="subtitle"><%= @product.manufacture %></p>
+                <p class="subtitle">$<%= @product.price %></p>
+              </article>
+              <article class="tile is-child notification is-warning">
+                <p class="title">Description</p>
+                <p class="subtitle"><%= @product.comment %></p>
+              </article>
+            </div>
+            <div class="tile is-parent">
+              <article class="tile is-child notification is-info">
+                <% if @product.image.present? %>
+                  <figure class="image">
+                    <%= image_tag @product.image %>
+                  </figure>
+                <%end%>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <%= link_to "Back to product list", products_path %>
+      </div>
+    </div>
+  </section>
 
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
 
-  <%= button_to "Destroy this product", @product, method: :delete %>
-</div>
+
+

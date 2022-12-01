@@ -1,6 +1,11 @@
 class ProductsController < InheritedResources::Base
   def index
-    @products = Product.page(params[:page])
+    @products = Product.search(params[:search]).page(params[:page])
+    @categories = Category.all
+  end
+
+  def show
+    @product = Product.find(params[:id])
   end
 
   private
