@@ -1,26 +1,28 @@
-<p style="color: green"><%= notice %></p>
+<% if flash[:notice] %>
+  <p style="color: green"><%= notice %></p>
+<% end %>
 
-  <section class="section">
-    <div class="container">
-      <div class="columns is-multiline mt-5 is-8 is-variable" id="products">
-        <% @products.each do |product| %>
-          <%= render product %>
-        <% end %>
-      </div>
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline mt-5 is-8 is-variable" id="products">
+      <% @products.each do |product| %>
+        <%= render product %>
+      <% end %>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="page_section">
-    <div class="container">
-      <div class="columns is-centered">
-        <%= paginate @products %>
-      </div>
+<section class="page_section">
+  <div class="container">
+    <div class="columns is-centered">
+      <%= paginate @products %>
     </div>
-  </section>
+  </div>
+</section>
 
-  <%= form_with(scope: "category") do |f| %>
-    <%= f.select :id, @categories.map { |c| [c.name, c.id] } %>
-  <% end %>
+<%= form_with(scope: "category") do |f| %>
+  <%= f.select :id, @categories.map { |c| [c.name, c.id] } %>
+<% end %>
 
 
 
