@@ -11,7 +11,10 @@
                 <p class="subtitle"><%= @product.manufacture %></p>
                 <p class="subtitle">$<%= @product.price %></p>
                 <div class="has-text-right">
-                  <button class="button is-primary">Add to Cart</button>
+                  <%= form_with url: cart_index_path, method: :post do %>
+                    <%= hidden_field_tag(:id,@product.id) %>
+                    <%= button_tag 'Add to Cart' %>
+                  <% end %>
                 </div>
               </article>
               <article class="tile is-child notification is-warning">
