@@ -2,6 +2,7 @@
   <div class="container">
     <section class="section products-table">
       <div class="columns table-header">
+        <div class="column">Image</div>
         <div class="column">Product Description</div>
         <div class="column">Price</div>
         <div class="column">Quantity</div>
@@ -9,18 +10,21 @@
       <div id="shopping_cart">
         <div>
             <% @products.each do |product| %>
-            <div class="columns product-row">
-                <div class="column center-container">
-                    <%= product.manufacture + ' ' + product.name %>
+              <div class="columns product-row">
+                <div class="column product-image">
+                  <%= image_tag(product.image, alt:"product_img") %>
                 </div>
                 <div class="column center-container">
-                    $<%= product.price %>
+                  <%= product.manufacture + ' ' + product.name %>
                 </div>
                 <div class="column center-container">
-                    <label for=<%= product.id %> class="mobile-table-heading"> Quantity</label >
-                    <input id=<%= product.id %> class="quantity" type="number" name="quantity" min="1" max="100" value="1">
+                  $<%= product.price %>
                 </div>
-            </div>
+                <div class="column center-container">
+                  <label for=<%= product.id %> class="mobile-table-heading"> Quantity</label >
+                  <input id=<%= product.id %> class="quantity" type="number" name="quantity" min="1" max="10" value="1">
+                </div>
+              </div>
             <% end %>
         </div>
       </div>
