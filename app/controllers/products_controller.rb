@@ -8,6 +8,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def cart
+    @products = Product.where(id: session[:shopping_cart])
+  end
+
   private
 
   def product_params

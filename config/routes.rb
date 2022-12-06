@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "about_page/index"
+  get "products/cart", to: "products#cart"
   resources :products
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
