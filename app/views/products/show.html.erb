@@ -34,7 +34,7 @@
               <article class="tile is-child notification is-info">
                 <% if @product.image.present? %>
                   <figure class="image">
-                    <%= image_tag @product.image %>
+                    <%= image_tag(@product.image, alt:"product_img") %>
                   </figure>
                 <%end%>
               </article>

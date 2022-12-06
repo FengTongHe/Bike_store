@@ -3,7 +3,7 @@
     <div class="card-image hast-text-centered px-6">
       <% if product.image.present? %>
         <figure class="image">
-          <%= image_tag product.image %>
+          <%= image_tag(product.image, alt: "product_img") %>
         </figure>
       <%end%>
     </div>

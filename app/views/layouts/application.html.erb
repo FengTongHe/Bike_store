@@ -16,7 +16,7 @@
       <nav class="navbar has-shadow is-white">
         <div class="navbar-brand">
           <a class="navbar-item">
-            <%= image_tag("logos/logo.png", style: 'max-height: 180px')%>
+            <%= image_tag("logos/logo.png", style: 'max-height: 180px', alt: 'logo')%>
           </a>
           <a class="navbar-burger" id="burger">
             <span></span>
@@ -67,12 +67,12 @@
 
     <%= yield %>
 
-  </body>
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>Copy Cat <%= Time.current.year %></p>
-    </div>
-  </footer>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>Copy Cat <%= Time.current.year %></p>
+      </div>
+    </footer>
 
+  </body>
 
 </html>
