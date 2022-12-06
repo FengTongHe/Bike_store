@@ -1,4 +1,4 @@
-class ProductsController < InheritedResources::Base
+class ProductsController < ApplicationController
   def index
     @products = Product.search(params[:search]).page(params[:page])
     @categories = Category.all

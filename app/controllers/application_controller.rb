@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :categories
 
   private
-
   def initialize_session
     session[:shopping_cart] ||= []
   end
