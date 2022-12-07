@@ -1,0 +1,53 @@
+<p style="color: green"><%= notice %></p>
+
+  <section class="section">
+    <div class="container">
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical is-8">
+          <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child notification is-primary">
+                <p class="title"><%= @product.name %></p>
+                <p class="subtitle"><%= @product.manufacture %></p>
+                <p class="subtitle"><%= number_to_currency @product.price %></p>
+                <div class="has-text-right">
+
+                  <% if session[:shopping_cart] .include?(@product.id) %>
+                    <%= button_to cart_path(@product.id), method: :delete do %>
+                      Remove from cart
+                    <% end %>
+                  <% else %>
+                    <%= form_with url: cart_index_path, method: :post do %>
+                      <%= hidden_field_tag(:id,@product.id) %>
+                      <%= button_tag 'Add to Cart' %>
+                    <% end %>
+                  <% end %>
+
+                </div>
+              </article>
+              <article class="tile is-child notification is-warning">
+                <p class="title">Description</p>
+                <p class="subtitle"><%= @product.comment %></p>
+              </article>
+            </div>
+            <div class="tile is-parent">
+              <article class="tile is-child notification is-info">
+                <% if @product.image.present? %>
+                  <figure class="image">
+                    <%= image_tag(@product.image, alt:"product_img") %>
+                  </figure>
+                <%end%>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <%= link_to "Back to product list", products_path %>
+      </div>
+    </div>
+  </section>
+
+
+
+

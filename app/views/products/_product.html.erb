@@ -1,0 +1,21 @@
+<div class="column is-one-quarter-table is-one-third-desktop" id="<%= dom_id product %>">
+  <div class="card">
+    <div class="card-image hast-text-centered px-6">
+      <% if product.image.present? %>
+        <figure class="image">
+          <%= image_tag(product.image, alt: "product_img") %>
+        </figure>
+      <%end%>
+    </div>
+    <div class="card-content">
+      <p class="subtitle is-6"><%= product.manufacture %></p>
+      <p class="title is-4"><%= product.name %></p>
+      <p class="subtitle is-8"><%= number_to_currency product.price %></p>
+    </div>
+    <footer class="card-footer">
+      <p>
+        <%= link_to "View", product %>
+      </p>
+    </footer>
+  </div>
+</div>

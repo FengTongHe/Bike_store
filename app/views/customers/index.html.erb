@@ -2,13 +2,20 @@
 
 <h1>Customers</h1>
 
-<div id="customers">
+<%= form_tag(customers_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+
+<section id="customers">
   <% @customers.each do |customer| %>
-    <%= render customer %>
-    <p>
-      <%= link_to "Show this customer", customer %>
-    </p>
+    <aside>
+      <%= render customer %>
+      <p>
+        <%= link_to "Show this customer", customer %>
+      </p>
+    </aside>
   <% end %>
-</div>
+</section>
 
 <%= link_to "New customer", new_customer_path %>
