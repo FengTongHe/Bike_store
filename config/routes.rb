@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "about_page/index"
   get "products/cart", to: "products#cart"
+  get "cart", to: "cart#show"
 
   post "cart/add"
   post "cart/remove"
@@ -14,5 +15,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "products#index"
 
-  resources :cart, only: %i[create destroy]
+  # resources :cart, only: %i[create destroy]
 end

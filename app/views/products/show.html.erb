@@ -12,15 +12,10 @@
                 <p class="subtitle"><%= number_to_currency @product.price %></p>
                 <div class="has-text-right">
 
-                  <% if session[:shopping_cart] .include?(@product.id) %>
-                    <%= button_to cart_path(@product.id), method: :delete do %>
-                      Remove from cart
-                    <% end %>
-                  <% else %>
-                    <%= form_with url: cart_index_path, method: :post do %>
-                      <%= hidden_field_tag(:id,@product.id) %>
-                      <%= button_tag 'Add to Cart' %>
-                    <% end %>
+                  <%= form_with(url: cart_add_path) do |f| %>
+                    <%= f.hidden_field :id, value: @product.id %>
+                    <%= f.hidden_field :quantity, value: 1 %>
+                    <%= f.submit "Add to Cart" %>
                   <% end %>
 
                 </div>

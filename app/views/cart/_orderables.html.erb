@@ -1,0 +1,33 @@
+<% @cart.orderables.each do |orderable| %>
+    <% product = orderable.product %>
+
+        <div class="tile is-parent is-vertical" id="<%= "cart-#{product.id}" %>">
+            <article class="tile is-child notification is-primary">
+            <p class="title"><%= product.name %></p>
+            <p class="subtitle"><%= product.manufacture %></p>
+            <p class="subtitle"><%= number_to_currency product.price %></p>
+            <div class="has-text-right">
+
+                <%= form_with(url: cart_add_path) do |f| %>
+                    <%= f.hidden_field :id, value: product.id %>
+                    <%= f.hidden_field :quantity, value: orderable.quantity, min: 0 %>
+                    <%= f.submit "Add to Cart" %>
+                <% end %>
+
+                <%= form_with(url: cart_remove_path) do |f| %>
+                    <%= f.hidden_field :id, value: orderable.id %>
+                    <%= f.submit "Remove" %>
+                <% end %>
+
+            </div>
+            </article>
+            <article class="tile is-child notification is-warning">
+            <p class="title">Description</p>
+            <p class="subtitle"><%= product.comment %></p>
+            </article>
+        </div>
+
+<% end %>
+
+
+
