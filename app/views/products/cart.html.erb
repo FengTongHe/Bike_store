@@ -18,7 +18,7 @@
                   <%= product.manufacture + ' ' + product.name %>
                 </div>
                 <div class="column center-container">
-                  $<%= product.price %>
+                  <%= number_to_currency product.price %>
                 </div>
                 <div class="column center-container">
                   <label for=<%= product.id %> class="mobile-table-heading"> Quantity</label >

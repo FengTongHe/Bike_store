@@ -10,7 +10,7 @@
     <div class="card-content">
       <p class="subtitle is-6"><%= product.manufacture %></p>
       <p class="title is-4"><%= product.name %></p>
-      <p class="subtitle is-8">$<%= product.price %></p>
+      <p class="subtitle is-8"><%= number_to_currency product.price %></p>
     </div>
     <footer class="card-footer">
       <p>

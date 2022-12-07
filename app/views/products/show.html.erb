@@ -9,7 +9,7 @@
               <article class="tile is-child notification is-primary">
                 <p class="title"><%= @product.name %></p>
                 <p class="subtitle"><%= @product.manufacture %></p>
-                <p class="subtitle">$<%= @product.price %></p>
+                <p class="subtitle"><%= number_to_currency @product.price %></p>
                 <div class="has-text-right">
 
                   <% if session[:shopping_cart] .include?(@product.id) %>
