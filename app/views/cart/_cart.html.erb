@@ -11,8 +11,8 @@
       <div id="shopping_cart">
         <div>
             <% @cart.orderables.each do |orderable| %>
-                <% product = orderable.product %>
-              <div class="columns product-row">
+              <% product = orderable.product %>
+              <div class="columns product-row" id="<%= dom_id orderable %>">
                 <div class="column product-image">
                   <%= image_tag(product.image, alt:"product_img") %>
                 </div>
