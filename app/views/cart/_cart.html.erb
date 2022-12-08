@@ -1,51 +1,8 @@
-<section class="section">
-  <div class="container">
-    <section class="section products-table">
-      <div class="columns table-header">
-        <div class="column">Image</div>
-        <div class="column">Product Description</div>
-        <div class="column">Price</div>
-        <div class="column">Quantity</div>
-        <div class="column"></div>
-      </div>
-      <div id="shopping_cart">
-        <div>
-            <% @cart.orderables.each do |orderable| %>
-              <% product = orderable.product %>
-              <div class="columns product-row" id="<%= dom_id orderable %>">
-                <div class="column product-image">
-                  <%= image_tag(product.image, alt:"product_img") %>
-                </div>
-                <div class="column center-container">
-                  <%= product.manufacture + ' ' + product.name %>
-                </div>
-                <div class="column center-container">
-                  <%= number_to_currency product.price %>
-                </div>
-                <div class="column center-container">
-                    <%= form_with(url: cart_add_path) do |f| %>
-                        <%= f.hidden_field :id, value: product.id %>
-                        <%= f.number_field :quantity, value: orderable.quantity, min: 0 %>
-                        <%= f.submit "Update" %>
-                    <% end %>
-                </div>
+<%= turbo_frame_tag "cart" do %>
+<% if @cart.orderables.count > 0 %>
+  <%= render "cart/orderables" %>
+  <% else %>
+  <p>Your cart is empty</p>
+  <% end %>
+<% end %>
 
-              </div>
-            <% end %>
-        </div>
-      </div>
-    </section>
-    <section class="columns checkout">
-        <div class="column submit-form">
-            <div id="total">
-            <span class="total">Total <%= number_to_currency @cart.total %> </span>
-            </div>
-            <div class="field is-grouped">
-            <p class="control">
-                <button class="button is-link" href="#">Continue to checkout</button>
-            </p>
-            </div>
-        </div>
-    </section>
-  </div>
-</section>
