@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'shipping_info/show'
   get "about_page/index"
   get "products/cart", to: "products#cart"
   get "cart", to: "cart#show"
