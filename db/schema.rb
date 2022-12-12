@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_10_222542) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_030054) do
   create_table "about_pages", force: :cascade do |t|
     t.string "Title"
     t.text "Content"
@@ -110,21 +110,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_222542) do
     t.index ["product_id"], name: "index_orderables_on_product_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.string "product_name"
-    t.integer "product_id"
-    t.integer "price_cents"
-    t.integer "pst_cents"
-    t.integer "gst_cents"
-    t.integer "quantity"
-    t.integer "customer_id", null: false
-    t.integer "shipping_info_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
-    t.index ["shipping_info_id"], name: "index_orders_on_shipping_info_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "manufacture"
@@ -138,33 +123,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_222542) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  create_table "shipping_infos", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "address"
-    t.string "city"
-    t.string "province"
-    t.string "post_code"
-    t.integer "customer_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_shipping_infos_on_customer_id"
-  end
-
-  create_table "taxes", force: :cascade do |t|
-    t.string "name"
-    t.decimal "pst"
-    t.decimal "gst"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "products"
-  add_foreign_key "orders", "customers"
-  add_foreign_key "orders", "shipping_infos"
   add_foreign_key "products", "categories"
-  add_foreign_key "shipping_infos", "customers"
 end
