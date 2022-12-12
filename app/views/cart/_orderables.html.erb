@@ -44,9 +44,9 @@
             <span class="total">Subtotal: <%= number_to_currency @cart.total %> </span>
             </div>
             <div class="field is-grouped">
-            <p class="control">
-                <button class="button is-link" href="#">Continue to checkout</button>
-            </p>
+            <div class="column center-container">
+                <%= link_to "Continue to Checkout", shipping_info_show_path, class: "button" %>
+            </div>
             </div>
         </div>
     </section>
