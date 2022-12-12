@@ -1,5 +1,6 @@
 <section class="section">
   <div class="container">
+    <h1>Shipping address</h1>
     <div class="field">
     <label class="label">Name</label>
     <div class="control">
@@ -63,35 +64,40 @@
     <label class="label">Province</label>
     <div class="control">
         <div class="select">
-        <select>
-            <option>Select dropdown</option>
-            <option>With options</option>
-        </select>
+            <%= form_with(url: shipping_info_update_path) do |f| %>
+                <%= f.select :id, @taxes.map { |c| [c.name, c.id] }, {:include_blank => true}, {onchange: "this.form.submit()"}  %>
+            <% end %>
         </div>
     </div>
     </div>
 
     <section class="columns checkout">
+        <%= turbo_frame_tag "tax" do %>
         <div class="column submit-form">
             <div id="subtotal">
             <span class="subtotal">Subtotal: <%= number_to_currency @cart.total %> </span>
             </div>
+            <% if @tax %>
+                <div id="pst">
+                <span class="subtotal">Tax: <%= number_to_currency @tax.pst * @cart.total %> </span>
+                </div>
 
-            <div id="tax">
-            <span class="subtotal">Tax: <%= number_to_currency @cart.total %> </span>
-            </div>
+                <div id="gst">
+                <span class="subtotal">Tax: <%= number_to_currency @tax.gst * @cart.total %> </span>
+                </div>
 
-            <div id="total">
-            <span class="subtotal">Total: <%= number_to_currency @cart.total %> </span>
-            </div>
-
+                <div id="total">
+                <span class="subtotal">Total: <%= number_to_currency @cart.total * (1 + @tax.pst + @tax.gst) %> </span>
+                </div>
+            <% end %>
+        <% end %>
             <div class="field is-grouped">
                 <div class="field is-grouped">
                 <div class="control">
                     <button class="button is-link">Continue to payment</button>
                 </div>
                 <div class="control">
-                    <button class="button is-link is-light">Return to shopping cart</button>
+                    <button class="button is-link">Return to shopping cart</button>
                 </div>
                 </div>
             </div>

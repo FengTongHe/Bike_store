@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  get 'shipping_info/show'
+  get "shipping_info/show"
   get "about_page/index"
   get "products/cart", to: "products#cart"
   get "cart", to: "cart#show"
 
   post "cart/add"
   post "cart/remove"
+
+  post "shipping_info/update"
 
   resources :products
   devise_for :admin_users, ActiveAdmin::Devise.config
