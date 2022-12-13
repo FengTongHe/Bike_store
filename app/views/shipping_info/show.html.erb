@@ -2,108 +2,75 @@
   <div class="container">
     <h1>Shipping address</h1>
 
-    <div class="field">
-    <label class="label">Name</label>
-    <div class="control">
-        <input class="input" type="text" placeholder="Customer name">
-    </div>
-    </div>
-
-    <div class="field">
-    <label class="label">Email</label>
-    <div class="control has-icons-left has-icons-right">
-        <input class="input" type="email" placeholder="Email input" value=" ">
-        <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-        </span>
-        <span class="icon is-small is-right">
-        <i class="fas fa-exclamation-triangle"></i>
-        </span>
-    </div>
-    </div>
-
-    <div class="field">
-    <label class="label">Phone</label>
-    <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Phone number" value=" ">
-        <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-        </span>
-        <span class="icon is-small is-right">
-        <i class="fas fa-exclamation-triangle"></i>
-        </span>
-    </div>
-    </div>
-
-    <div class="field">
-    <label class="label">Address</label>
-    <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="555 ABC Dr." value=" ">
-        <span class="icon is-small is-left">
-        <i class="fas fa-user"></i>
-        </span>
-        <span class="icon is-small is-right">
-        <i class="fas fa-check"></i>
-        </span>
-    </div>
-    </div>
-
-    <div class="field">
-    <label class="label">City</label>
-    <div class="control has-icons-left has-icons-right">
-        <input class="input" type="text" placeholder="Winnnipeg" value=" ">
-        <span class="icon is-small is-left">
-        <i class="fas fa-user"></i>
-        </span>
-        <span class="icon is-small is-right">
-        <i class="fas fa-check"></i>
-        </span>
-    </div>
-    </div>
-
-    <div class="field">
-    <label class="label">Province</label>
-    <div class="control">
-        <div class="select">
-            <%= form_with(url: shipping_info_update_path) do |f| %>
-                <%= f.select :id, @taxes.map { |c| [c.name, c.id] }, {:include_blank => true}, {onchange: "this.form.submit()"}  %>
-            <% end %>
+    <%= form_with url: shipping_info_update_path, method: :get do |form| %>
+        <div class="field">
+            <%= form.label :name, "Full Name:", style: "display: block" %>
+            <%= form.text_field :name %>
         </div>
-    </div>
-    </div>
 
-    <section class="columns checkout">
-        <%= turbo_frame_tag "tax" do %>
-        <div class="column submit-form">
-            <div id="subtotal">
-            <span class="subtotal">Subtotal: <%= number_to_currency @cart.total %> </span>
+        <div class="field">
+            <%= form.label :email, "Email:", style: "display: block" %>
+            <%= form.text_field :email %>
+        </div>
+
+        <div class="field">
+            <%= form.label :phone, "Phone:", style: "display: block" %>
+            <%= form.text_field :phone %>
+        </div>
+
+        <div class="field">
+            <%= form.label :address, "Address:", style: "display: block" %>
+            <%= form.text_field :address %>
+        </div>
+
+        <div class="field">
+            <%= form.label :city, "City:", style: "display: block" %>
+            <%= form.text_field :city %>
+        </div>
+
+        <div class="field">
+            <%= form.label :city, "Province:", style: "display: block" %>
+            <div class="control">
+                <div class="select">
+                    <%= form.select :id, @taxes.map { |c| [c.name, c.id] }, {:include_blank => true}, {onchange: "this.form.submit()"}  %>
+                </div>
             </div>
-            <% if @tax %>
-                <div id="pst">
-                <span class="subtotal">Tax: <%= number_to_currency @tax.pst * @cart.total %> </span>
-                </div>
+        </div>
 
-                <div id="gst">
-                <span class="subtotal">Tax: <%= number_to_currency @tax.gst * @cart.total %> </span>
+        <section class="columns checkout">
+            <%= turbo_frame_tag "tax" do %>
+            <div class="column submit-form">
+                <div id="subtotal">
+                <span class="subtotal">Subtotal: <%= number_to_currency @cart.total %> </span>
                 </div>
+                <% if @tax %>
+                    <div id="pst">
+                    <span class="subtotal">Tax: <%= number_to_currency @tax.pst * @cart.total %> </span>
+                    </div>
 
-                <div id="total">
-                <span class="subtotal">Total: <%= number_to_currency @cart.total * (1 + @tax.pst + @tax.gst) %> </span>
-                </div>
+                    <div id="gst">
+                    <span class="subtotal">Tax: <%= number_to_currency @tax.gst * @cart.total %> </span>
+                    </div>
+
+                    <div id="total">
+                    <span class="subtotal">Total: <%= number_to_currency @cart.total * (1 + @tax.pst + @tax.gst) %> </span>
+                    </div>
+                <% end %>
             <% end %>
-        <% end %>
-            <div class="field is-grouped">
                 <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link">Continue to payment</button>
+                    <div class="field is-grouped">
+                    <div class="control">
+                        <%= form.submit "Continue to payment", style: "display: block" %>
+                    </div>
+                    <div class="control">
+                        <%= link_to "Back to Shopping Cart", cart_path %>
+                    </div>
+                    </div>
                 </div>
-                <div class="control">
-                     <%= link_to "Back to Shopping Cart", cart_path, class: "button" %>
                 </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-  </div>
-</section>
+            </div>
+        </section>
+    <% end %>
+
