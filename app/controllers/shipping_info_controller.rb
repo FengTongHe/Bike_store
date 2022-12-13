@@ -11,4 +11,10 @@ class ShippingInfoController < ApplicationController
     #   end
     # end
   end
+
+  private
+
+  def shipping_info_params
+    params.require(:shipping_info).permit(:name, :email, :address, :city, :province)
+  end
 end
