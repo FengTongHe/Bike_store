@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_07_030054) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_10_222542) do
   create_table "about_pages", force: :cascade do |t|
     t.string "Title"
     t.text "Content"
@@ -121,6 +121,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_030054) do
     t.datetime "updated_at", null: false
     t.integer "category_id", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "taxes", force: :cascade do |t|
+    t.string "name"
+    t.decimal "pst"
+    t.decimal "gst"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
