@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   post "shipping_info/update"
 
+  resources :shipping_info
   resources :products
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
