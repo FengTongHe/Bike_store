@@ -13,10 +13,19 @@ class AddressesController < InheritedResources::Base
   def new
     @taxes = Tax.all
     @address = Address.new
+
+    @tax = Tax.find_by(id: params[:id].presence)
+    # respond_to do |format|
+    #   format.turbo_stream do
+    #     render turbo_stream: turbo_stream.replace("tax")
+    #   end
+    # end
   end
 
   # GET /addresses/1/edit
-  def edit; end
+  def edit
+    @address = Address.find(params[:id])
+  end
 
   # POST /addresses or /addresses.json
   def create
@@ -52,6 +61,7 @@ class AddressesController < InheritedResources::Base
 
   # DELETE /addresses/1 or /addresses/1.json
   def destroy
+    @address = Address.find(params[:id])
     @address.destroy
 
     respond_to do |format|
