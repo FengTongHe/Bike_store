@@ -16,7 +16,7 @@ class AddressesController < InheritedResources::Base
   end
 
   def tax
-    @tax = Tax.find_by(name: params[:name].presence)
+    @tax = Tax.find_by(name: params[:province].presence)
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
