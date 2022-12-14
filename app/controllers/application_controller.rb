@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
       @cart = Cart.create
       session[:cart_id] = @cart.id
     end
+
+    # @shipping_info ||= ShippingInfo.find_by(id: session[:shippinginfo_id])
+
+    # if @shipping_info.nil?
+    #   @shipping_info = ShippingInfo.create
+    #   session[:shippinginfo_id] = @shipping_info.id
+    # end
   end
 
   private
