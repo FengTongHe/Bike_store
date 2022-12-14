@@ -28,13 +28,13 @@
 
   <div class="field">
     <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <%= form.email_field :email %>
   </div>
 
   <div class="field">
     <%= form.label :province, style: "display: block" %>
     <div class="select">
-        <%= form.select :province, @taxes.map { |c| [c.name, c.id] }, {:include_blank => true}  %>
+        <%= form.select :province, @taxes.map { |c| [c.name, c.name] }, {:include_blank => true}  %>
     </div>
   </div>
 

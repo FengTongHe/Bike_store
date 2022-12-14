@@ -19,9 +19,11 @@ class AddressesController < InheritedResources::Base
     @tax = Tax.find_by(name: params[:name].presence)
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("tax",
-                                                  partial: "address/form",
-                                                  locals:  { tax: @tax })
+        render turbo_stream: [
+          turbo_stream.replace("tax",
+                               partial: "address/form",
+                               locals:  { address: @address })
+        ]
       end
     end
   end
