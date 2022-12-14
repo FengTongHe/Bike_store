@@ -1,4 +1,6 @@
 class Customer < ApplicationRecord
+  validates :full_name, :phone_number, :email, presence: true, uniqueness: true
+
   has_one_attached :image
 
   def self.search(search)

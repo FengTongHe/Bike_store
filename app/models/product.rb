@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  validates :name, :manufacture, :style, :cost, presence: true
+
   belongs_to :category
   has_one_attached :image
   has_many :orderables
