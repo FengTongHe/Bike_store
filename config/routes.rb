@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post "cart/add"
   post "cart/remove"
 
-  post "shipping_info/update"
+  post "address/tax"
 
   resources :shipping_info
   resources :products

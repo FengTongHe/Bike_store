@@ -13,13 +13,17 @@ class AddressesController < InheritedResources::Base
   def new
     @taxes = Tax.all
     @address = Address.new
+  end
 
-    @tax = Tax.find_by(id: params[:id].presence)
-    # respond_to do |format|
-    #   format.turbo_stream do
-    #     render turbo_stream: turbo_stream.replace("tax")
-    #   end
-    # end
+  def tax
+    @tax = Tax.find_by(name: params[:name].presence)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("tax",
+                                                  partial: "address/form",
+                                                  locals:  { tax: @tax })
+      end
+    end
   end
 
   # GET /addresses/1/edit

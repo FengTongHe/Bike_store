@@ -34,13 +34,13 @@
   <div class="field">
     <%= form.label :province, style: "display: block" %>
     <div class="select">
-        <%= form.select :province, @taxes.map { |c| [c.name, c.id] }, {:include_blank => true}  %>
+        <%= form.select :province, @taxes.map { |c| [c.name, c.id] }, {:include_blank => true}, {onchange: "this.form.submit()"}  %>
     </div>
   </div>
 
     <section class="columns checkout">
-        <%= turbo_frame_tag "tax" do %>
-        <div class="column submit-form">
+
+        <div class="column submit-form" id="<%= dom_id @cart %>">
             <div id="subtotal">
             <span class="subtotal">Subtotal: <%= number_to_currency @cart.total %> </span>
             </div>
@@ -57,7 +57,7 @@
                 <span class="subtotal">Total: <%= number_to_currency @cart.total * (1 + @tax.pst + @tax.gst) %> </span>
                 </div>
             <% end %>
-        <% end %>
+
             <div class="field is-grouped">
                 <div class="field is-grouped">
                 <div class="control">
