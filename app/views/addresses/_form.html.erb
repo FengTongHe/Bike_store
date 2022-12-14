@@ -27,13 +27,15 @@
   </div>
 
   <div>
-    <%= form.label :province, style: "display: block" %>
-    <%= form.text_field :province %>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
   </div>
 
   <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <%= form.label :province, style: "display: block" %>
+    <div class="select">
+        <%= form.select :province, @taxes.map { |c| [c.name, c.id] }, {:include_blank => true}  %>
+    </div>
   </div>
 
   <div>
