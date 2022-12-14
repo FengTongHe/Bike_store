@@ -34,7 +34,7 @@
   <div class="field">
     <%= form.label :province, style: "display: block" %>
     <div class="select">
-        <%= form.select :province, @taxes.map { |c| [c.name, c.id] }, {:include_blank => true}, {onchange: "this.form.submit()"}  %>
+        <%= form.select :province, @taxes.map { |c| [c.name, c.id] }, {:include_blank => true}  %>
     </div>
   </div>
 
