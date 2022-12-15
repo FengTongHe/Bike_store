@@ -7,6 +7,7 @@ class AddressesController < InheritedResources::Base
   # GET /addresses/1 or /addresses/1.json
   def show
     @address = Address.find(params[:id])
+    @tax = Tax.find_by(name: @address.province)
   end
 
   # GET /addresses/new
@@ -15,21 +16,9 @@ class AddressesController < InheritedResources::Base
     @address = Address.new
   end
 
-  def tax
-    @tax = Tax.find_by(name: params[:province].presence)
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace("tax",
-                               partial: "address/form",
-                               locals:  { address: @address })
-        ]
-      end
-    end
-  end
-
   # GET /addresses/1/edit
   def edit
+    @taxes = Tax.all
     @address = Address.find(params[:id])
   end
 

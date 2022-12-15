@@ -1,6 +1,66 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @address %>
+<section class="section">
+  <div class="container">
+    <section class="section products-table">
+      <div class="columns table-header">
+        <div class="column">Product Description</div>
+        <div class="column">Price</div>
+        <div class="column">Quantity</div>
+      </div>
+      <div id="shopping_cart">
+        <div>
+            <% @cart.orderables.each do |orderable| %>
+              <% product = orderable.product %>
+              <div class="columns product-row" id="<%= dom_id orderable %>">
+                <div class="column center-container">
+                  <%= product.manufacture + ' ' + product.name %>
+                </div>
+                <div class="column center-container">
+                  <%= number_to_currency product.price %>
+                </div>
+                <div class="column center-container">
+                    <%= form_with(url: cart_add_path) do |f| %>
+                      <%= orderable.quantity %>
+                    <% end %>
+                </div>
+              </div>
+            <% end %>
+        </div>
+      </div>
+    </section>
+    <section class="columns checkout">
+        <div class="column submit-form">
+            <div id="total">
+            <span class="total">Subtotal: <%= number_to_currency @cart.total %> </span>
+            </div>
+
+            <% if @tax %>
+                <div id="pst">
+                <span class="subtotal">PST: <%= number_to_currency @tax.pst * @cart.total %> </span>
+                </div>
+
+                <div id="gst">
+                <span class="subtotal">GST: <%= number_to_currency @tax.gst * @cart.total %> </span>
+                </div>
+
+                <div id="total">
+                <span class="subtotal">Total: <%= number_to_currency @cart.total * (1 + @tax.pst + @tax.gst) %> </span>
+                </div>
+            <% end %>
+
+            <div class="field is-grouped">
+            <div class="column center-container">
+                <%= button_to "Checkout", new_address_path, :method => :get %>
+            </div>
+            </div>
+        </div>
+    </section>
+  </div>
+</section>
+
+
+
 
 <div>
   <%= link_to "Edit this address", edit_address_path(@address) %> |
