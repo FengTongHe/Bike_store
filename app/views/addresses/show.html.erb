@@ -68,15 +68,15 @@
             </div>
 
             <% if @tax %>
-                <div id="pst">
+                <div id="pst_amount">
                 <span class="subtotal">PST: <%= number_to_currency @tax.pst * @cart.total %> </span>
                 </div>
 
-                <div id="gst">
+                <div id="gst_amount">
                 <span class="subtotal">GST: <%= number_to_currency @tax.gst * @cart.total %> </span>
                 </div>
 
-                <div id="total">
+                <div id="total_amount">
                 <span class="subtotal"> <strong>Total:</strong>  <%= number_to_currency @cart.total * (1 + @tax.pst + @tax.gst) %> </span>
                 </div>
             <% end %>
