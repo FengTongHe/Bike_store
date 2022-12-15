@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subtotal: 1
+  pst: 1
+  gst: 1
+  status: MyString
+  address: one
+  customer: one
+  cart: one
+
+two:
+  subtotal: 1
+  pst: 1
+  gst: 1
+  status: MyString
+  address: two
+  customer: two
+  cart: two
