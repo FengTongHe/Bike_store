@@ -41,6 +41,7 @@ class AddressesController < InheritedResources::Base
 
   # PATCH/PUT /addresses/1 or /addresses/1.json
   def update
+    @address = Address.find(params[:id])
     respond_to do |format|
       if @address.update(address_params)
         format.html do
@@ -57,12 +58,7 @@ class AddressesController < InheritedResources::Base
   # DELETE /addresses/1 or /addresses/1.json
   def destroy
     @address = Address.find(params[:id])
-    @address.destroy
-
-    respond_to do |format|
-      format.html { redirect_to addresses_url, notice: "Address was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to cart_path if @address.destroy
   end
 
   private

@@ -1,5 +1,36 @@
 <p style="color: green"><%= notice %></p>
 
+<section class="section address-table">
+  <div id="<%= dom_id @address %>">
+    <p><strong>Shipping Address:</strong></p>
+    <p>
+      Name:
+      <%= @address.name %>
+    </p>
+
+    <p>
+      Address:
+      <%= @address.address %>
+    </p>
+
+    <p>
+      City:
+      <%= @address.city %>
+    </p>
+
+    <p>
+      Province:
+      <%= @address.province %>
+    </p>
+
+    <p>
+      Email:
+      <%= @address.email %>
+    </p>
+
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <section class="section products-table">
@@ -29,6 +60,7 @@
         </div>
       </div>
     </section>
+
     <section class="columns checkout">
         <div class="column submit-form">
             <div id="total">
@@ -45,26 +77,23 @@
                 </div>
 
                 <div id="total">
-                <span class="subtotal">Total: <%= number_to_currency @cart.total * (1 + @tax.pst + @tax.gst) %> </span>
+                <span class="subtotal"> <strong>Total:</strong>  <%= number_to_currency @cart.total * (1 + @tax.pst + @tax.gst) %> </span>
                 </div>
             <% end %>
 
             <div class="field is-grouped">
-            <div class="column center-container">
-                <%= button_to "Checkout", new_address_path, :method => :get %>
+                <div class="field is-grouped">
+                <div class="control">
+                    <%= button_to "Checkout", new_address_path, :method => :get %>
+                </div>
+                <div class="control">
+                    <%= link_to "Edit this address", edit_address_path(@address) %>
+                </div>
+                </div>
             </div>
-            </div>
+
         </div>
     </section>
   </div>
 </section>
 
-
-
-
-<div>
-  <%= link_to "Edit this address", edit_address_path(@address) %> |
-  <%= link_to "Back to addresses", addresses_path %>
-
-  <%= button_to "Destroy this address", @address, method: :delete %>
-</div>
