@@ -9,6 +9,6 @@ class OrderController < ApplicationController
     @order = Order.new(address_id: address_id, customer_id: 1, cart_id: cart_id, subtotal: subtotal, pst: pst,
                        gst: gst)
 
-    redirect_to root_path, notice: "Customer was successfully created." if @order.save
+    redirect_to root_path, notice: "Order was successfully created." if @order.save
   end
 end
