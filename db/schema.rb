@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_14_032717) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_15_043157) do
   create_table "about_pages", force: :cascade do |t|
     t.string "Title"
     t.text "Content"
@@ -120,6 +120,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_14_032717) do
     t.index ["product_id"], name: "index_orderables_on_product_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "subtotal"
+    t.integer "pst"
+    t.integer "gst"
+    t.string "status"
+    t.integer "address_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "cart_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "manufacture"
@@ -145,5 +160,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_14_032717) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "orderables", "carts"
   add_foreign_key "orderables", "products"
+  add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "customers"
   add_foreign_key "products", "categories"
 end
