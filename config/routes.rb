@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "order/create"
   resources :addresses
   get "shipping_info/show"
   get "about_page/index"
