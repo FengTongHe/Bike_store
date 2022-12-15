@@ -84,7 +84,16 @@
             <div class="field is-grouped">
                 <div class="field is-grouped">
                 <div class="control">
-                    <%= button_to "Checkout", new_address_path, :method => :get %>
+
+                  <%= form_with(url: order_create_path) do |f| %>
+                      <%= f.hidden_field :address_id, value: @address.id %>
+                      <%= f.hidden_field :cart_id, value: @cart.id %>
+                      <%= f.hidden_field :subtotal, value: (@cart.total * 100).to_i %>
+                      <%= f.hidden_field :pst, value: (@tax.pst * @cart.total * 100).to_i %>
+                      <%= f.hidden_field :gst, value: (@tax.gst * @cart.total * 100).to_i %>
+                      <%= f.submit "Checkout" %>
+                  <% end %>
+
                 </div>
                 <div class="control">
                     <%= link_to "Edit this address", edit_address_path(@address) %>
